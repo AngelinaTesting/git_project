@@ -6,7 +6,7 @@ def test_delete_positive():
     url = "https://petstore.swagger.io/v2/pet"
     request = {}
 
-    request['name'] = "Selim"
+    request['name'] = "Lola"
 
     request['category'] = {}
     request['category']['name'] = "Angelina"
@@ -38,7 +38,7 @@ def test_delete_positive():
     print("urlDelete = ", urlDelete)
     responseDelete = requests.delete(urlDelete)
     print("responseDelete = ", responseDelete.json())
-    assert responseDelete.json()['code'] == 200
+    assert responseDelete.json()['code'] == 200 # нужна эта проверка?
 
     # Проверяем, что питомец удалился
     urlGet_2 = "https://petstore.swagger.io/v2/pet/" + str(responseDelete.json()['message'])
@@ -47,10 +47,21 @@ def test_delete_positive():
     print("responseGet_delete = ", responseGet_delete.json())
 
     # Удаление удаленного питомца
-# urlDelete_2 = "https://petstore.swagger.io/v2/pet/" + str(responseGet.json()['id']) # в str передается id из post,провереный get
-# print("urlDelete_2 = ", urlDelete_2)
-# responseDelete_2 = requests.delete(urlDelete_2)
-# print("responseDelete_2 = ", responseDelete_2.json())
 
-# assert responseDelete_2.json()['code'] == 200
+    #urlDelete_2 = "https://petstore.swagger.io/v2/pet/" + str(responseGet.json()['id']) # в str передается id из post,проверенный get
+    #print("urlDelete_2 = ", urlDelete_2)
+    #responseDelete_2 = requests.delete(urlDelete_2)
+    #print("responseDelete_2 = ", responseDelete_2.json())
+    # assert responseDelete_2.json()['code'] == 404
 
+def test_delete_negative_non_exist():
+    urlDelete_3 = "https://petstore.swagger.io/v2/pet/8833234945"
+    responseDelete_3 = requests.delete(urlDelete_3)
+    print("responseDelete_3 = ", responseDelete_3.json())
+    assert responseDelete_3.json()['code'] == 404
+
+def test_delete_negative_id_not_int():
+    urlDelete_3 = "https://petstore.swagger.io/v2/pet/sadwrtgdyh"
+    responseDelete_3 = requests.delete(urlDelete_3)
+    print("responseDelete_3 = ", responseDelete_3.json())
+    assert responseDelete_3.json()['code'] == 404
