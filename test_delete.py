@@ -1,0 +1,2 @@
+install pytest
+install requests
