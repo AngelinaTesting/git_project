@@ -38,14 +38,14 @@ def test_delete_positive():
     print("urlDelete = ", urlDelete)
     responseDelete = requests.delete(urlDelete)
     print("responseDelete = ", responseDelete.json())
-    assert responseDelete.json()['code'] == 200 # нужна эта проверка?
+    assert responseDelete.json()['code'] == 200
 
     # Проверяем, что питомец удалился
     urlGet_2 = "https://petstore.swagger.io/v2/pet/" + str(responseDelete.json()['message'])
     print("urlGet_2 = ", urlGet_2)
     responseGet_delete = requests.get(urlGet_2)
     print("responseGet_delete = ", responseGet_delete.json())
-    # assert message Pet not found
+    assert responseGet_delete.json()['message'] == 'Pet not found'
 
 def test_delete_negative_non_exist():
     urlDelete_3 = "https://petstore.swagger.io/v2/pet/8833234945"
@@ -58,4 +58,4 @@ def test_delete_negative_id_not_int():
     urlDelete_3 = "https://petstore.swagger.io/v2/pet/sadwrtgdyh"
     responseDelete_3 = requests.delete(urlDelete_3)
     print("responseDelete_3 = ", responseDelete_3.json())
-    assert responseDelete_3.json()['code'] == 404
+    assert responseDelete_3.json()['message'] == 'NumberFormatException'
