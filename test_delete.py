@@ -58,4 +58,4 @@ def test_delete_negative_id_not_int():
     urlDelete_3 = "https://petstore.swagger.io/v2/pet/sadwrtgdyh"
     responseDelete_3 = requests.delete(urlDelete_3)
     print("responseDelete_3 = ", responseDelete_3.json())
-    assert responseDelete_3.json()['message'] == 'NumberFormatException'
+    assert responseDelete_3.json()['message'] == 'java.lang.NumberFormatException: For input string: "sadwrtgdyh"'
