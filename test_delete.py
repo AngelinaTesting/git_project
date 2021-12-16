@@ -52,7 +52,7 @@ def test_delete_negative_non_exist():
     responseDelete_3 = requests.delete(urlDelete_3)
     print("responseDelete_3 = ", responseDelete_3.json())
     assert responseDelete_3.json()['code'] == 404
-    # assert MESSAGE
+    # assert MESSAGE #
 
 def test_delete_negative_id_not_int():
     urlDelete_3 = "https://petstore.swagger.io/v2/pet/sadwrtgdyh"
