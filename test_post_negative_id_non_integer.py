@@ -2,7 +2,7 @@ import requests
 import pytest
 
 
-def test_delete_positive_user():
+def test_post_negative_id_non_integer():
     url = "https://petstore.swagger.io/v2/user"
     request = {}
     request['id'] = "ывпва"
