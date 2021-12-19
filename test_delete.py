@@ -6,7 +6,7 @@ def test_delete_positive():
     url = "https://petstore.swagger.io/v2/pet"
     request = {}
 
-    request['name'] = "Selim"
+    request['name'] = "Lola"
 
     request['category'] = {}
     request['category']['name'] = "Angelina"
@@ -45,12 +45,17 @@ def test_delete_positive():
     print("urlGet_2 = ", urlGet_2)
     responseGet_delete = requests.get(urlGet_2)
     print("responseGet_delete = ", responseGet_delete.json())
+    assert responseGet_delete.json()['message'] == 'Pet not found'
 
-    # Удаление удаленного питомца
-# urlDelete_2 = "https://petstore.swagger.io/v2/pet/" + str(responseGet.json()['id']) # в str передается id из post,провереный get
-# print("urlDelete_2 = ", urlDelete_2)
-# responseDelete_2 = requests.delete(urlDelete_2)
-# print("responseDelete_2 = ", responseDelete_2.json())
+def test_delete_negative_non_exist():
+    urlDelete_3 = "https://petstore.swagger.io/v2/pet/8833234945"
+    responseDelete_3 = requests.delete(urlDelete_3)
+    print("responseDelete_3 = ", responseDelete_3.json())
+    assert responseDelete_3.json()['code'] == 404
+    # assert MESSAGE #
 
-# assert responseDelete_2.json()['code'] == 200
-
+def test_delete_negative_id_not_int():
+    urlDelete_3 = "https://petstore.swagger.io/v2/pet/sadwrtgdyh"
+    responseDelete_3 = requests.delete(urlDelete_3)
+    print("responseDelete_3 = ", responseDelete_3.json())
+    assert responseDelete_3.json()['message'] == 'java.lang.NumberFormatException: For input string: "sadwrtgdyh"'
