@@ -1,7 +1,7 @@
 import requests
 import pytest
 
-
+# Создание пользователя с валидными значениями
 def test_post_positive_user():
     url = "https://petstore.swagger.io/v2/user"
     request = {}
@@ -36,4 +36,4 @@ def test_post_positive_user():
     responseGet_2 = requests.get(urlGet_2)
     print("responseGet_2 = ", responseGet_2.json())
 
-    assert responseGet_2.json()['id'] == response.json()['message']
+    assert str(responseGet_2.json()['id']) == response.json()['message']
