@@ -29,3 +29,11 @@ def test_post_positive_user():
 
     assert responseGet.json()['code'] == 200
     assert responseGet.json()['message'] is not None
+
+    # Проверяем методом Get/user/username (не из моего варианта курсовой), что пользователь создался
+    urlGet_2 = "https://petstore.swagger.io/v2/user/" + str(request['username'])  # передаем имя пользователя из POST
+    print("urlGet_3 = ", urlGet_2)
+    responseGet_2 = requests.get(urlGet_2)
+    print("responseGet_2 = ", responseGet_2.json())
+
+    assert responseGet_2.json()['id'] == response.json()['message']
