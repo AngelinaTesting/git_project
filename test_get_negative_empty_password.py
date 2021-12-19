@@ -1,8 +1,8 @@
 import requests
 import pytest
 
-# Создание пользователя с валидными значениями
-def test_get_positive():
+
+def test_get_negative_empty_password():
     url = "https://petstore.swagger.io/v2/user"
     request = {}
     request['id'] = "30121993100"
@@ -21,11 +21,10 @@ def test_get_positive():
     assert response.json()['code'] == 200
     assert response.json()['message'] == request['id']
 
-    # Проверяем методом get, что созданный пользователь может залогиниться
-    urlGet = "https://petstore.swagger.io/v2/user/login?username=Ange_tester_1&password=134567"
+
+    urlGet = "https://petstore.swagger.io/v2/user/login?username=Ange_tester_1&password="
     print("urlGet = ", urlGet)
     responseGet = requests.get(urlGet)
     print("responseGet = ", responseGet.json())
 
-    assert responseGet.json()['code'] == 200
-    assert responseGet.json()['message'] is not None
+    assert responseGet.json()['code'] == 404
