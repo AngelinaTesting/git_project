@@ -5,11 +5,11 @@ import pytest
 def test_get_positive():
     url = "https://petstore.swagger.io/v2/user"
     request = {}
-    request['id'] = "12394948449"
-    request['username']= "Ange_tester_4"
+    request['id'] = "30121993100"
+    request['username']= "Ange_tester_1"
     request['firstname'] = "Angelinochka"
     request['lastname']= "Angela"
-    request['email'] = "2@mail.ru"
+    request['email'] = "1@mail.ru"
     request['password'] = "134567"
     request['password'] = "11111111111"
     request['userStatus'] = '0'
@@ -22,7 +22,7 @@ def test_get_positive():
     assert response.json()['message'] == request['id']
 
     # Проверяем методом get, что созданный пользователь может залогиниться
-    urlGet = "https://petstore.swagger.io/v2/user/login?username=Ange_tester_4&password=134567"
+    urlGet = "https://petstore.swagger.io/v2/user/login?username=Ange_tester_1&password=134567"
     print("urlGet = ", urlGet)
     responseGet = requests.get(urlGet)
     print("responseGet = ", responseGet.json())
