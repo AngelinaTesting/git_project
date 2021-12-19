@@ -1,7 +1,7 @@
 import requests
 import pytest
 
-
+# Создание пользователя с валидными значениями
 def test_get_positive():
     url = "https://petstore.swagger.io/v2/user"
     request = {}
