@@ -11,7 +11,7 @@ def test_delete_positive_user():
     request['lastname']= "Angela"
     request['email'] = "1@mail.ru"
     request['password'] = "134567"
-    request['password'] = "11111111111"
+    request['phone'] = "11111111111"
     request['userStatus'] = '0'
 
     print("request", request)
@@ -38,14 +38,6 @@ def test_delete_positive_user():
 
     assert responseDelete.json()['code'] == 200
     assert responseDelete.json()['message'] == request['username']
-
-    # Проверяем, что удаленный пользователь не может залогиниться.
-    # Эта проверка будет FAIL, потому что методом Get/user/login (из моего варианта) при любых условиях пользователь может залогиниться
-    #urlGet_2 = "https://petstore.swagger.io/v2/user/login?username=Ange_tester_7&password=134567"
-    #print("urlGet_2 = ", urlGet_2)
-    #responseGet_delete = requests.get(urlGet_2)
-    #print("responseGet_delete = ", responseGet_delete.json())
-    #assert responseGet_delete.json()['code'] == 400
 
     #Проверяем методом Get/user/username (не из моего варианта курсовой), что пользователь действительно удален
     urlGet_3 = "https://petstore.swagger.io/v2/user/"+ str(responseDelete.json()['message']) # передаем имя пользователя из ответа в delete
