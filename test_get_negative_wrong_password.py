@@ -1,7 +1,6 @@
 import requests
 import pytest
 
-# Создание пользователя с валидными значениями
 def test_get_negative_wrong_password():
     url = "https://petstore.swagger.io/v2/user"
     request = {}
@@ -11,7 +10,7 @@ def test_get_negative_wrong_password():
     request['lastname']= "Angela"
     request['email'] = "1@mail.ru"
     request['password'] = "134567"
-    request['password'] = "11111111111"
+    request['phone'] = "11111111111"
     request['userStatus'] = '0'
 
     print("request", request)
