@@ -1,7 +1,6 @@
 import requests
 import pytest
 
-# Создание пользователя с валидными значениями
 def test_post_positive_user():
     url = "https://petstore.swagger.io/v2/user"
     request = {}
@@ -10,8 +9,8 @@ def test_post_positive_user():
     request['firstname'] = "Angelinochka"
     request['lastname']= "Angela"
     request['email'] = "2@mail.ru"
-    request['password'] = "134567"
-    request['password'] = "11111111111"
+    request['password'] = "1237"
+    request['phone'] = "11111111111"
     request['userStatus'] = '0'
 
     print("request", request)
@@ -22,7 +21,7 @@ def test_post_positive_user():
     assert response.json()['message'] == request['id']
 
     # Проверяем методом get, что созданный пользователь может залогиниться
-    urlGet = "https://petstore.swagger.io/v2/user/login?username=Ange_tester_4&password=134567"
+    urlGet = "https://petstore.swagger.io/v2/user/login?username=Ange_tester_4&password=1237"
     print("urlGet = ", urlGet)
     responseGet = requests.get(urlGet)
     print("responseGet = ", responseGet.json())
@@ -30,9 +29,9 @@ def test_post_positive_user():
     assert responseGet.json()['code'] == 200
     assert responseGet.json()['message'] is not None
 
-    # Проверяем методом Get/user/username (не из моего варианта курсовой), что пользователь создался
+    # Проверяем методом Get/user/username (не из моего варианта курсовой) body созданного пользователя (дополнительная функция)
     urlGet_2 = "https://petstore.swagger.io/v2/user/" + str(request['username'])  # передаем имя пользователя из POST
-    print("urlGet_3 = ", urlGet_2)
+    print("urlGet_2 = ", urlGet_2)
     responseGet_2 = requests.get(urlGet_2)
     print("responseGet_2 = ", responseGet_2.json())
 
