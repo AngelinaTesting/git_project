@@ -28,4 +28,5 @@ def test_get_positive():
     print("responseGet = ", responseGet.json())
 
     assert responseGet.json()['code'] == 200
-    assert responseGet.json()['message'] is not None
+   # assert responseGet.json()['message'] is not None
+    assert 'logged in user session' in responseGet.json()['message']
