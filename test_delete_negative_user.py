@@ -7,4 +7,4 @@ def test_delete_negative_user():
     print("urlDelete = ", urlDelete)
     responseDelete = requests.delete(urlDelete)
     print("responseDelete = ", responseDelete.json())
-    # assert responseDelete.json()['message'] == 'Error: response status is 404'
+    assert responseDelete.json()['code'] == 404
