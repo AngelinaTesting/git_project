@@ -11,7 +11,7 @@ def test_get_negative_empty_username():
     request['lastname']= "Angela"
     request['email'] = "1@mail.ru"
     request['password'] = "134567"
-    request['password'] = "11111111111"
+    request['phone'] = "11111111111"
     request['userStatus'] = '0'
 
     print("request", request)
