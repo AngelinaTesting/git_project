@@ -11,7 +11,7 @@ def test_get_negative_user_empty():
     request['lastname']= "Angela"
     request['email'] = "1@mail.ru"
     request['password'] = "134567"
-    request['password'] = "11111111111"
+    request['phone'] = "11111111111"
     request['userStatus'] = '0'
 
     print("request", request)
@@ -21,7 +21,7 @@ def test_get_negative_user_empty():
     assert response.json()['code'] == 200
     assert response.json()['message'] == request['id']
 
-
+    # Проверяем, что пользователь не може войти с пустыми параметрами
     urlGet = "https://petstore.swagger.io/v2/user/login?username=&password="
     print("urlGet = ", urlGet)
     responseGet = requests.get(urlGet)
