@@ -40,7 +40,7 @@ def test_delete_positive_user():
     assert responseDelete.json()['message'] == request['username']
 
     #Проверяем методом Get/user/username (не из моего варианта курсовой), что пользователь действительно удален
-    urlGet_3 = "https://petstore.swagger.io/v2/user/"+ str(responseDelete.json()['message']) # передаем имя пользователя из ответа в delete
+    urlGet_3 = "https://petstore.swagger.io/v2/user/"+ str(responseDelete.json()['message']) ## передаем имя пользователя из ответа в delete
     print("urlGet_3 = ", urlGet_3)
     responseGet_delete_2 = requests.get(urlGet_3)
     print("responseGet_delete_2 = ", responseGet_delete_2.json())
